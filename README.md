@@ -11,7 +11,7 @@ This is an individual assessment. All work must be your own. Your Challenge scor
 You are not allowed to collaborate during the Sprint Challenge. However, you are encouraged to follow the twenty-minute rule and seek support from your TL and Instructor in your cohort help channel on Slack. Your submitted work reflects your proficiency in the concepts and topics that were covered this week.
 
 You have three hours to complete this Sprint Challenge. Plan your time accordingly.
-
+ 
 ## Commits
 
 Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons) and it also helps your project manager to more thoroughly assess your work.
@@ -88,7 +88,7 @@ would become...
 
 While credit will be given for a functional solution, only optimal solutions will earn a ***3*** on this task.
 
-#### Stretch 
+#### Stretch
 
 * Say your code from `names.py` is to run on an embedded computer with very limited RAM. Because of this, memory is extremely constrained and you are only allowed to store names in arrays (i.e. Python lists). How would you go about optimizing the code under these conditions? Try it out and compare your solution to the original runtime. (If this solution is less efficient than your original solution, include both and label the strech solution with a comment)
 
