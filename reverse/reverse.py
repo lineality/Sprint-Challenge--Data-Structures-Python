@@ -45,37 +45,71 @@ class LinkedList:
         # if we've gotten here, then the target node isn't in our list
         return False
 
-    # def reverse_list(self, node, prev):
-    #     # You must use recursion for this solution
-    #     pass
+    # You must use recursion for this solution
 
-    def reverse_linked_list(self, node):
-        # # recursive: base case = no more nodes after, or: self.next_node == None
-        # because recursion creates a stack, it will go backwards from the end
+    # This function reverses the sequence of a singly linked list
+    # and satisfies the followed exceptional cases:
+    # - only an empty node is input (returns None)
+    # - only one node is put in (does nothing)
+    # - both parameters are correctly filled (works)
+    # - the second parameter is filled with None
+    #   even though there was a second parameter to use
+    #
+    # There are two functions. The helper function handles
+    # exceptional inputs, but the recursive functions works
+    # when used alone if the input is valid.
+    #
+    #  Helper function for invalid input exceptions:
+    def reverse_list(self, node, prev):
 
-        # stores value of this node
-        temp = node
-
-        # if there is a next...
-        # (until base case of no next: if self.next_node != None)
-        if node.next_node:
-            # this runs the recursive function on the 'next'
-            self.reverse_linked_list(node.next_node)
-            # and this sets that next node to connect to this node
-            node.next_node.next_node = temp
-
-    def reverse_list(self, node, prev=None):
-
-        if node:
-            # step 1: run recursive reverse_order function
-            self.reverse_linked_list(node)
-            # chicken and egg problem: the first node.next needs to be None
-
-            if node.next_node:
-                # step 2: make first node point to None
-                node.next_node = None
-
-            else:
-                return None
-        else:
+        # if only an empty node is input
+        # outputs: None
+        if node is None:
             return None
+
+        # if there is only one node:
+        # so node exists but node.next_node does not, then
+        # pass: do nothing
+        elif node is not None and node.next_node is None:
+            pass
+
+        # "Missing Parameter" input:
+        # if there are several nodes but the "prev" input
+        # is left blank, set "prev" to be "prev" (self.head.next_node)
+        # and then run the recursive function
+        elif node is not None and prev is None:
+            prev = self.head.next_node
+
+            # run recursive function
+            self.reverse_list2(node.next_node, prev.next_node)
+
+    # Recursive function that works alone with valid input
+    def reverse_list2(self, node, prev):
+
+        # save temp value of node
+        temp_node = node
+
+        # loops through as long as there is a previous node
+        if prev is not None:
+            # recursively calls function, creating a stack
+            # until base case,
+            self.reverse_list2(node.next_node, prev.next_node)
+            # and then in reverse order re-assigning the
+            # node relationships (changning direction)
+            # what was previous becomes next
+            prev.next_node = temp_node
+
+        # because the head needs to be assigned
+        # directly in "this" class structure
+        else:
+            self.head = node
+
+    # # note: the recursive function is very simple, without all the exeptions
+    # def reverse_list(node, prev):
+    #     temp_node = node
+    #     if prev != None:
+    #         reverse_list(node.next_node, prev.next_node)
+    #         prev.next_node = temp_node
+    #     else:
+    #         Tom.head = node
+
