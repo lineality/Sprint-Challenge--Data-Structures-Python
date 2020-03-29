@@ -45,6 +45,37 @@ class LinkedList:
         # if we've gotten here, then the target node isn't in our list
         return False
 
-    def reverse_list(self, node, prev):
-        # You must use recursion for this solution
-        pass
+    # def reverse_list(self, node, prev):
+    #     # You must use recursion for this solution
+    #     pass
+
+    def reverse_linked_list(self, node):
+        # # recursive: base case = no more nodes after, or: self.next_node == None
+        # because recursion creates a stack, it will go backwards from the end
+
+        # stores value of this node
+        temp = node
+
+        # if there is a next...
+        # (until base case of no next: if self.next_node != None)
+        if node.next_node:
+            # this runs the recursive function on the 'next'
+            self.reverse_linked_list(node.next_node)
+            # and this sets that next node to connect to this node
+            node.next_node.next_node = temp
+
+    def reverse_list(self, node, prev=None):
+
+        if node:
+            # step 1: run recursive reverse_order function
+            self.reverse_linked_list(node)
+            # chicken and egg problem: the first node.next needs to be None
+
+            if node.next_node:
+                # step 2: make first node point to None
+                node.next_node = None
+
+            else:
+                return None
+        else:
+            return None
